@@ -1,28 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import MainReducer from "./Contacts/contacts-reducer";
-// const store = configureStore({
-//   reducer: MainReducer,
-// });
+
 import contactsReducer from "./Contacts/contacts-reducer";
 import authReducer from "./Auth/auth-slice";
+
 const middleware = (getDefaultMiddleware) =>
   getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  });
+    serializableCheck: false,
+  }).concat(thunk);
 
 const authPersistConfig = {
   key: "auth",

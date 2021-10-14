@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import authOperations from "../../Redux/Auth/auth-operations";
 import s from "./RegisterView.module.css";
@@ -22,6 +22,7 @@ export default function RegisterView() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
+    console.log(password);
     setName("");
     setEmail("");
     setPassword("");

@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import authOperations from "../../Redux/Auth/auth-operations";
 import authSelectors from "../../Redux/Auth/auth-selectors";
 import defaultAvatar from "./xqdodxc5zvrdlg0fk8.png";
-import PhoneBook from "../../Components/PhoneBook/PhoneBook";
 import s from "./UserMenu.module.css";
 export default function UserMenu() {
   const dispatch = useDispatch();

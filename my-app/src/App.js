@@ -1,15 +1,12 @@
 import { lazy, useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AppBar from "Components/AppBar/AppBar";
-// import RegisterView from "Components/RegisterView/RegisterView";
-// import LoginView from "Components/LoginView/LoginView";
-// import PhoneBook from "Components/PhoneBook/PhoneBook";
-// import HomeView from "Components/HomeView/HomeView";
 import { Switch } from "react-router-dom";
 import authOperations from "./Redux/Auth/auth-operations";
 import PrivateRoute from "Components/PrivateRoute";
 import PublicRoute from "Components/PublicRoute";
 import authSelectors from "Redux/Auth/auth-selectors";
+import Spinner from "Components/Loader/Loader";
 const RegisterView = lazy(() =>
   import("./Components/RegisterView/RegisterView")
 );
@@ -29,7 +26,7 @@ export default function App() {
         <AppBar />
         <Switch>
           {/* <Route exact path="/" component={HomeView} /> */}
-          <Suspense fallback={<p>Please, wait, loading...</p>}>
+          <Suspense fallback={<Spinner />}>
             <PublicRoute exact path="/">
               <HomeView />
             </PublicRoute>
@@ -39,9 +36,7 @@ export default function App() {
             <PublicRoute exact path="/login" restricted>
               <LoginView />
             </PublicRoute>
-            {/* <Route path="/register" component={RegisterView} />
-        <Route path="/logIn" component={LoginView} /> */}
-            {/* <Route path="/phoneBook" component={PhoneBook} /> */}
+
             <PrivateRoute path="/phoneBook">
               <PhoneBook />
             </PrivateRoute>
